@@ -46,6 +46,7 @@ import com.protal.me.model.Blog;
  * <pre>3.分词器解压后，复制到ES安装目录plugins下；</pre>
  * <pre>4.ES可视化界面下载，https://github.com/360EntSecGroup-Skylar/ElasticHD/releases；Windows版，cmd命令启动ElasticHD -p 127.0.0.1:9800；</pre>
  * <pre>5.引入依赖spring-boot-starter-data-elasticsearch，配置yml文件，代码实现；</pre>
+ * <pre>6.实体类中应首先指定分词器analyzer类型，再启动应用；否则会出现[Mapper for [title] conflicts with existing mapping]异常；</pre>
  */
 @RestController
 @RequestMapping("blog")
@@ -158,7 +159,7 @@ public class BlogController {
 	public Object queryHighlight(@RequestParam String title, @PageableDefault Pageable pageable) {
 		LOG.info(title);
 		// 高亮设置
-		Field highlight = new HighlightBuilder.Field("title").preTags("<pre style='color:red'>").postTags("</pre>");
+		Field highlight = new HighlightBuilder.Field("title").preTags("<font style='color:red'>").postTags("</font>");
 
 		NativeSearchQuery query = new NativeSearchQueryBuilder().withQuery(QueryBuilders.matchQuery("title", title))
 				.withPageable(pageable).withSort(SortBuilders.fieldSort("id").order(SortOrder.DESC))
