@@ -1,0 +1,18 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /protal
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+spring:
+  application:
+    name: me-protal
+  resources:
+    static-locations: classpath:/static/,classpath:/templates/
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 127.0.0.1:9300
+      repositories:
+        enabled: true

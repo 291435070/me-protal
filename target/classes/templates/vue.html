@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>log.vue</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body>
+	<h1 id="mycountup">0</h1>
+
+	<div id="app1">{{message}}</div>
+	<div id="app2">
+		<span v-bind:title="message"> 鼠标悬停几秒钟查看此处动态绑定的提示信息 </span>
+	</div>
+	<div id="app3">
+		<p v-if="seen">现在你看到我了</p>
+	</div>
+	<div id="app4">
+		<ol>
+			<li v-for="todo in todos">{{todo.text}}</li>
+		</ol>
+	</div>
+	<div id="app5">
+		<p>{{message}}</p>
+		<button v-on:click="reverseMessage">反转消息</button>
+	</div>
+	<div id="app6">
+		<p>{{message}}</p>
+		<input v-model="message">
+	</div>
+
+	<script type="text/javascript" src="js/vue/vue.js"></script>
+	<script type="text/javascript" src="js/countUp.min.js"></script>
+	<script type="text/javascript">
+		new CountUp('mycountup', 0, 9527.25, 2, 3, null).start();
+	
+		var app1 = new Vue({
+			el : '#app1',
+			data : {
+				message : 'hello vue'
+			}
+		});
+	
+		var app2 = new Vue({
+			el : '#app2',
+			data : {
+				message : '页面加载于' + new Date().toLocaleString()
+			}
+		});
+	
+		var app3 = new Vue({
+			el : '#app3',
+			data : {
+				seen : true
+			}
+		});
+	
+		var app4 = new Vue({
+			el : '#app4',
+			data : {
+				todos : [
+					{
+						text : '学习 JavaScript'
+					},
+					{
+						text : '学习  Vue'
+					},
+					{
+						text : '学习了解'
+					}
+				]
+			}
+		});
+	
+		var app5 = new Vue({
+			el : '#app5',
+			data : {
+				message : 'hello vue.js',
+			},
+			methods : {
+				reverseMessage : function() {
+					this.message = this.message.split('').reverse().join('')
+				}
+			}
+		});
+	
+		var app6 = new Vue({
+			el : '#app6',
+			data : {
+				message : 'hello vue.min.js'
+			}
+		});
+	</script>
+</body>
+</html>
