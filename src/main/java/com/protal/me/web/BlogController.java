@@ -176,6 +176,7 @@ public class BlogController {
 					@Override
 					public <T> AggregatedPage<T> mapResults(SearchResponse response, Class<T> clazz,
 							Pageable pageable) {
+						LOG.info("总数----------{}", response.getHits().getTotalHits());
 						if (CollectionUtils.isEmpty(response.getHits().getHits())) {
 							return null;
 						}
@@ -200,7 +201,7 @@ public class BlogController {
 						return null;
 					}
 				});
-
+		LOG.info("总数=========={}", elasticsearchTemplate.count(query));
 		return aggregatedPage.getContent();
 	}
 
