@@ -8,17 +8,15 @@
 </head>
 <body>
 	<div>
-		<input id="search" style="height:17px;border-color:blue;">
+		<input id="search" style="height:17px;border-color:blue;" list="titles">
 		<button onclick="doSearch()" style="cursor:pointer;">搜索</button>
 	</div>
 
-	<input list="names" id="inp_name">
-	<button onclick="getDatalist()">datalist标签</button>
-	<datalist id="names">
-		<option>James</option>
-		<option>Jack</option>
-		<option>Tom</option>
-		<option>Lilei</option>
+	<datalist id="titles">
+		<option>Java</option>
+		<option>Springboot</option>
+		<option>代码</option>
+		<option>搜索引擎</option>
 	</datalist>
 
 	<ul hidden="hidden">
@@ -27,10 +25,6 @@
 
 	<script type="text/javascript" src="https://www.jq22.com/jquery/jquery-2.1.1.js"></script>
 	<script type="text/javascript">
-		function getDatalist() {
-			alert($('#inp_name').val());
-		}
-	
 		function doSearch() {
 			var _s = $('#search').val();
 			$.ajax({
