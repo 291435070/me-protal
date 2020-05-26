@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.protal.me.dao.BlogMapper">
+
+    <select id="list" parameterType="com.protal.me.model.Blog" resultType="com.protal.me.model.Blog">
+        SELECT * FROM t_blog
+        <where>
+            <if test="title != null and title != ''">
+                AND title=#{title}
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+    <select id="select" parameterType="com.protal.me.model.Blog" resultType="com.protal.me.model.Blog">
+		SELECT * FROM t_blog WHERE id=#{id}
+	</select>
+
+    <update id="update" parameterType="com.protal.me.model.Blog">
+        UPDATE t_blog
+        <set>
+            <if test="title != null and title != ''">
+                title=#{title},
+            </if>
+            <if test="content != null and content != ''">
+                content=#{content}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="com.protal.me.model.Blog">
+		DELETE FROM t_blog WHERE id=#{id}
+	</delete>
+
+    <insert id="insert" parameterType="com.protal.me.model.Blog">
+		INSERT INTO t_blog(title,content,date)
+		VALUES(#{title},#{content},NOW())
+	</insert>
+
+</mapper>
