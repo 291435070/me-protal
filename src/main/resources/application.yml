@@ -19,3 +19,15 @@ spring:
       cluster-nodes: 127.0.0.1:9300
       repositories:
         enabled: true
+  mail:
+    host: smtp.qq.com
+    username: haoitteam@qq.com
+    password: fygpwzcqcpxtbieh
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
