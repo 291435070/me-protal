@@ -45,7 +45,8 @@ public class MailController {
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
         helper.setFrom(from);
         helper.setTo("3002128637@qq.com");
-        helper.setSubject("勿回复:系统自动发送");
+        //helper.setCc("506596364@qq.com");
+        helper.setSubject("勿回复:系统自动发送(老张收)");
         helper.setText(text, true);
         javaMailSender.send(message);
 
