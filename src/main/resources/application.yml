@@ -35,13 +35,9 @@ spring:
     username: haoitteam@qq.com
     password: fygpwzcqcpxtbieh
     default-encoding: UTF-8
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-            required: true
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.auth.starttls.enable: true
+    properties.mail.smtp.auth.starttls.required: true
 mybatis:
   mapper-locations: classpath:mybatis/**/*Mapper.xml
   configuration:
