@@ -38,6 +38,17 @@ spring:
     properties.mail.smtp.auth: true
     properties.mail.smtp.auth.starttls.enable: true
     properties.mail.smtp.auth.starttls.required: true
+  redis:
+    database: 0
+    host: 192.168.0.241
+    password: zyhk237@123
+    timeout: 60000
+    lettuce:
+      pool:
+        min-idle: 1
+        max-idle: 10
+        max-active: 100
+        max-wait: 10000
 mybatis:
   mapper-locations: classpath:mybatis/**/*Mapper.xml
   configuration:
