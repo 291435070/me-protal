@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>editor</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body>
+<div>
+    <textarea class="xheditor" id="xe_content" rows="12" cols="8" style="width:100%"></textarea>
+    <br><br>
+    <button onclick="getText()" style="cursor:pointer;">获取</button>
+</div>
+
+<script type="text/javascript" src="https://libs.baidu.com/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/xheditor-1.1.14-zh-cn.min.js"></script>
+<script type="text/javascript">
+    function getText() {
+        var _s = $('#xe_content').val();
+        console.log(_s);
+        alert(_s);
+    }
+</script>
+</body>
+</html>

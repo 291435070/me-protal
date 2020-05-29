@@ -3,11 +3,13 @@ package com.protal.me;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-@EnableTransactionManagement
-@EnableCaching
+@EnableTransactionManagement    //开启事务注解
+@EnableCaching                  //开启缓存注解
+@EnableScheduling               //定时任务注解
 public class ProtalApplication {
 
     public static void main(String[] args) {
