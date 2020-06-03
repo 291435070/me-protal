@@ -1,6 +1,7 @@
 package com.protal.me.web;
 
 import com.protal.me.config.LoginInterceptor;
+import eu.bitwalker.useragentutils.UserAgent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,10 @@ public class IndexController {
     }
 
     @RequestMapping("search")
-    public Object save() {
+    public Object save(HttpServletRequest request) {
+        UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
+        LOG.info("{}", userAgent.getBrowser());
+        LOG.info("{}", userAgent.getOperatingSystem());
         return "/search";
     }
 
