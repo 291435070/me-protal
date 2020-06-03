@@ -17,6 +17,6 @@ public class DefaultView implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //未登录不拦截的请求
-        registry.addInterceptor(new LoginInterceptor()).excludePathPatterns("/login.html", "/index/login", "/js/**", "/css/**");
+        registry.addInterceptor(new LoginInterceptor()).excludePathPatterns("/login.html", "/index/login", "/js/**", "/css/**", "/images/**");
     }
 }

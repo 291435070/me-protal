@@ -1,0 +1,197 @@
+.l_box {
+    width: 30%;
+    float: left
+}
+
+.r_box {
+    width: 68%;
+    float: right
+}
+
+.l_box h2 {
+    color: #333;
+    font-size: 14px;
+    line-height: 30px;
+    padding-left: 20px;
+    background: #fff
+}
+
+.l_box div {
+    background: rgba(255, 255, 255, 0.5);
+    margin-bottom: 20px;
+    overflow: hidden
+}
+
+.l_box div ul {
+    padding: 10px;
+    overflow: hidden
+}
+
+.fenlei li {
+    margin-bottom: 10px;
+    margin-left: 10px
+}
+
+.tuijian li {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-bottom: 5px;
+    background: url(../images/li.png) left center no-repeat;
+    padding-left: 20px
+}
+
+.guanzhu img {
+    width: 100%
+}
+
+.l_box .search {
+    border: 1px solid #000;
+    background: #000;
+    border-radius: 0 5px 5px 0;
+    position: relative
+}
+
+.search input.input_submit {
+    border: 0;
+    background: 0;
+    color: #fff;
+    outline: 0;
+    position: absolute;
+    top: 10px;
+    right: 8%
+}
+
+.search input.input_text {
+    border: 0;
+    line-height: 36px;
+    height: 36px;
+    width: 72%;
+    padding-left: 10px;
+    outline: 0
+}
+
+.r_box li {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    overflow: hidden;
+    color: #797b7c;
+    margin-bottom: 20px
+}
+
+.r_box li h3 {
+    font-size: 16px;
+    line-height: 25px;
+    text-shadow: #FFF 1px 1px 1px
+}
+
+.r_box li h3 a {
+    color: #222
+}
+
+.r_box li h3 a:hover {
+    color: #000;
+    text-decoration: underline
+}
+
+.r_box li img {
+    float: right;
+    clear: right;
+    width: 100%;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s
+}
+
+.r_box li i {
+    width: 150px;
+    display: block;
+    max-height: 100px;
+    overflow: hidden;
+    float: right;
+    margin-left: 20px
+}
+
+.r_box li p {
+    margin: 20px 0 0 0;
+    line-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2
+}
+
+.r_box li:hover img {
+    transform: scale(1.05)
+}
+
+.r_box li:hover h3 a {
+    color: #19585d
+}
+
+.about {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8)
+}
+
+.cloud ul a {
+    line-height: 24px;
+    height: 24px;
+    display: block;
+    background: #999;
+    float: left;
+    padding: 3px 11px;
+    margin: 10px 10px 0 0;
+    border-radius: 8px;
+    -moz-transition: all .5s;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+    color: #FFF
+}
+
+.cloud ul a:nth-child(8n-7) {
+    background: #8a9b0f
+}
+
+.cloud ul a:nth-child(8n-6) {
+    background: #eb6841
+}
+
+.cloud ul a:nth-child(8n-5) {
+    background: #3fb8af
+}
+
+.cloud ul a:nth-child(8n-4) {
+    background: #fe4365
+}
+
+.cloud ul a:nth-child(8n-3) {
+    background: #fc9d9a
+}
+
+.cloud ul a:nth-child(8n-2) {
+    background: #edc951
+}
+
+.cloud ul a:nth-child(8n-1) {
+    background: #c8c8a9
+}
+
+.cloud ul a:nth-child(8n) {
+    background: #83af9b
+}
+
+.cloud ul a:first-child {
+    background: #036564
+}
+
+.cloud ul a:last-child {
+    background: #3299bb
+}
+
+.cloud ul a:hover {
+    border-radius: 0;
+    text-shadow: #000 1px 1px 1px
+}

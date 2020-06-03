@@ -1,0 +1,119 @@
+.infosbox {
+    float: right;
+    width: 68%;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.8)
+}
+
+.newsview {
+    padding: 0 30px
+}
+
+.news_title {
+    font-size: 24px;
+    font-weight: normal;
+    padding: 20px 0;
+    color: #333
+}
+
+.bloginfo {
+    width: 100%;
+    overflow: hidden
+}
+
+.bloginfo li {
+    float: left;
+    margin-right: 20px
+}
+
+.news_about {
+    color: #888;
+    border: 1px solid #f3f3f3;
+    padding: 10px;
+    margin: 20px auto 15px auto;
+    line-height: 23px;
+    background: none repeat 0 0 #f6f6f6
+}
+
+.news_about strong {
+    color: #38485a;
+    font-weight: 400 !important;
+    font-size: 13px;
+    padding-right: 8px
+}
+
+.tags a {
+    background: #f4650e;
+    padding: 3px 8px;
+    margin: 0 5px 0 0;
+    color: #fff
+}
+
+.tags {
+    margin: 10px 0
+}
+
+.infosbox img {
+    max-width: 650px;
+    height: auto;
+    width: 100%
+}
+
+.share {
+    padding: 20px
+}
+
+.nextinfo {
+    line-height: 24px;
+    width: 100%;
+    overflow: hidden;
+    margin: 20px 0
+}
+
+.nextinfo p {
+    padding: 4px 10px;
+    border-radius: 5px
+}
+
+.nextinfo a:hover {
+    color: #000;
+    text-decoration: underline
+}
+
+.news_pl {
+    margin: 10px 0;
+    width: 100%;
+    overflow: hidden
+}
+
+.news_pl h2 {
+    border-bottom: #000 2px solid;
+    line-height: 40px;
+    font-size: 14px;
+    padding-left: 10px;
+    color: #000
+}
+
+.diggit {
+    width: 160px;
+    margin: auto;
+    background: #e2523a;
+    color: #fff;
+    box-shadow: 1px 2px 6px 0 rgba(0, 0, 0, .2);
+    border-radius: 3px;
+    line-height: 40px;
+    text-align: center
+}
+
+.diggit a {
+    color: #fff
+}
+
+#diggnum {
+    margin: 5px
+}
+
+.guanzhu {
+    top: 10px;
+    width: 300px
+}
