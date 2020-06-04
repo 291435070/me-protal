@@ -57,3 +57,6 @@ logging:
   level:
     com.protal.me.dao: debug
     com.zaxxer.hikari: debug
+  file:
+    path: D:/log
+    name: slb_process.txt

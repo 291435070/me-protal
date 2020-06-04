@@ -5,57 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>blog index</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!--<link href="css/base.css" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
-    <link href="css/m.adaptive.css" rel="stylesheet">-->
     <link rel="stylesheet" href="css/blog.cmn.css">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/hc-sticky.js"></script>
-    <script type="text/javascript" src="js/blog.cmn.js"></script>
 </head>
 <body>
-<header class="header-navigation" id="header">
-    <nav>
-        <div class="logo"><a href="/">杨青个人博客</a></div>
-        <h2 id="mnavh"><span class="navicon"></span></h2>
-        <ul id="starlist">
-            <li><a href="index.html">网站首页</a></li>
-            <li><a href="share.html">我的相册</a></li>
-            <li><a href="list.html">我的日记</a></li>
-            <li><a href="about.html">关于我</a></li>
-            <li><a href="gbook.html">留言</a></li>
-            <li><a href="info.html">内容页</a></li>
-            <li><a href="infopic.html">内容页</a></li>
-        </ul>
-    </nav>
-</header>
+<div id="blogheader"></div>
 <article>
-    <aside class="l_box">
-        <div class="about_me">
-            <h2>关于我</h2>
-            <ul>
-                <i><img src="images/4.jpg"></i>
-                <p><b>杨青</b>，一个80后草根女站长！09年入行。一直潜心研究web前端技术，一边工作一边积累经验，分享一些个人博客模板，以及SEO优化等心得。</p>
-            </ul>
-        </div>
-        <div class="wdxc">
-            <h2>我的相册</h2>
-            <ul>
-                <li><a href="/"><img src="images/7.jpg"></a></li>
-                <li><a href="/"><img src="images/8.jpg"></a></li>
-                <li><a href="/"><img src="images/9.jpg"></a></li>
-                <li><a href="/"><img src="images/10.jpg"></a></li>
-                <li><a href="/"><img src="images/11.jpg"></a></li>
-                <li><a href="/"><img src="images/12.jpg"></a></li>
-            </ul>
-        </div>
-        <div class="guanzhu">
-            <h2>关注我 么么哒</h2>
-            <ul>
-                <img src="images/wx.jpg">
-            </ul>
-        </div>
-    </aside>
+    <div id="blogaside"></div>
     <main class="r_box">
         <ul class="about">
             留言插件安装
@@ -63,9 +18,18 @@
         </ul>
     </main>
 </article>
-<footer>
-    <p>Design by <a href="http://www.yangqq.com" target="_blank">杨青个人博客</a> <a href="/">蜀ICP备11002373号-1</a></p>
-</footer>
-<a href="#" class="cd-top">Top</a>
+<div id="blogfooter"></div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/hc-sticky.js"></script>
+<script type="text/javascript" src="js/blog.cmn.js"></script>
+<script type="text/javascript">
+    $("#blogheader").load("public/header.html");
+    $("#blogaside").load("public/aside.html");
+    $("#blogfooter").load("public/footer.html", function () {
+        var sc = document.createElement("script");
+        sc.src = "js/blog.cmn.js";
+        $("body").append(sc);
+    })
+</script>
 </body>
 </html>

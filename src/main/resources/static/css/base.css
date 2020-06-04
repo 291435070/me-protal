@@ -128,8 +128,8 @@ article, aside {
     background: #000
 }
 
-#starlist #selected {
-    color: #f65a8a
+#starlist .active {
+    color: #ff6600
 }
 
 .header-navigation {

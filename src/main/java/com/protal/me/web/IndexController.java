@@ -15,21 +15,17 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("index")
 public class IndexController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(IndexController.class);
+    private static final Logger LOG = LoggerFactory.getLogger("gds_process_error");
 
     @PostMapping("login")
     public Object login(HttpServletRequest request, @RequestParam String username, @RequestParam String password) {
-        request.getSession().setAttribute(LoginInterceptor.SESSION_USER, "admin");
-        LOG.info("已登录成功...{}-{}", username, password);
-        return "/search";
-    }
+        request.getSession().setAttribute(LoginInterceptor.SESSION_USER, username);
+        LOG.warn("已登录成功...{}-{}", username, password);
 
-    @RequestMapping("search")
-    public Object save(HttpServletRequest request) {
         UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
-        LOG.info("{}", userAgent.getBrowser());
-        LOG.info("{}", userAgent.getOperatingSystem());
-        return "/search";
+        LOG.warn("{}...{}", userAgent.getBrowser(), userAgent.getOperatingSystem());
+
+        return "redirect:/index.html";
     }
 
 }

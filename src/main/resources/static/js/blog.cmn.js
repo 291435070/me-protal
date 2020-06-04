@@ -3,24 +3,6 @@ $(document).ready(function () {
         $("#starlist").toggle();
         $("#mnavh").toggleClass("open")
     });
-    var obj = null;
-    var As = document.getElementById("starlist").getElementsByTagName("a");
-    obj = As[0];
-    for (i = 1; i < As.length; i++) {
-        if (window.location.href.indexOf(As[i].href) >= 0) {
-            obj = As[i]
-        }
-    }
-    obj.id = "selected";
-    $(".search_ico").click(function () {
-        $(".search_bar").toggleClass("search_open");
-        if ($("#keyboard").val().length > 2) {
-            $("#keyboard").val("");
-            $("#searchform").submit()
-        } else {
-            return false
-        }
-    });
     var new_scroll_position = 0;
     var last_scroll_position;
     var header = document.getElementById("header");
@@ -49,4 +31,18 @@ $(document).ready(function () {
         $("body,html").animate({scrollTop: 0,}, scroll_top_duration)
     });
     var Sticky = new hcSticky("aside", {stickTo: "main", innerTop: 200, followScroll: false})
+
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return decodeURI(r[2]);
+        }
+        return null;
+    }
+
+    var option = getUrlParam('type');
+    console.log('type:' + option);
+    $('#starlist a').removeClass("active");
+    $('#starlist a').eq(option).addClass("active");
 });
