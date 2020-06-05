@@ -13,8 +13,8 @@
     <div id="blogaside"></div>
     <main class="r_box">
         <ul class="about">
-            留言插件安装
-
+            在线留言板
+            <textarea class="xheditor" id="xe_content" rows="12" cols="8" style="width:100%;resize:vertical"></textarea>
         </ul>
     </main>
 </article>
@@ -22,13 +22,17 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/hc-sticky.js"></script>
 <script type="text/javascript" src="js/blog.cmn.js"></script>
+<script type="text/javascript" src="js/countUp.min.js"></script>
+<script type="text/javascript" src="js/vue/vue.min.js"></script>
 <script type="text/javascript">
     $("#blogheader").load("public/header.html");
     $("#blogaside").load("public/aside.html");
     $("#blogfooter").load("public/footer.html", function () {
-        var sc = document.createElement("script");
-        sc.src = "js/blog.cmn.js";
-        $("body").append(sc);
+        setTimeout(function () {
+            var sc = document.createElement("script");
+            sc.src = "js/blog.cmn.js";
+            $("body").append(sc);
+        }, 300)
     })
 </script>
 </body>

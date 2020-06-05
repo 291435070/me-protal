@@ -1,60 +1,52 @@
 <aside class="l_box">
     <div class="search">
-        <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
-            <input name="title" class="input_text" placeholder="请输入关键字词" type="text" autocomplete="off">
-            <input class="input_submit" value="搜索" type="submit">
+        <form method="post" id="searchform">
+            <input name="title" class="input_text" placeholder="请输入关键字词" type="text" autocomplete="off" list="titles">
+            <datalist id="titles">
+                <option>Java</option>
+                <option>SpringBoot</option>
+                <option>SpringCloud</option>
+                <option>搜索引擎</option>
+            </datalist>
+            <input class="input_submit" value="搜索" type="button" onclick="dosearch()">
         </form>
     </div>
     <div class="fenlei">
         <h2>文章分类</h2>
         <ul>
-            <li><a href="#">Springboot（31）</a></li>
-            <li><a href="#">搜索引擎（10）</a></li>
-            <li><a href="#">Java（600）</a></li>
-            <li><a href="#">Redis（24）</a></li>
+            <li><a href="#">Springboot（<span id="count1">0</span>）</a></li>
+            <li><a href="#">搜索引擎（<span id="count2">0</span>）</a></li>
+            <li><a href="#">Java（<span id="count3">0</span>）</a></li>
+            <li><a href="#">Redis（<span id="count4">0</span>）</a></li>
         </ul>
     </div>
     <div class="tuijian">
         <h2>站长推荐</h2>
         <ul>
-            <li><a href="#">你是什么人便会遇上什么人</a></li>
-            <li><a href="#">帝国cms 列表页调用子栏目，没有则不显示栏目名称</a></li>
-            <li><a href="#">第二届 优秀个人博客模板比赛参选活动</a></li>
-            <li><a href="#">个人博客模板《绅士》后台管理</a></li>
-            <li><a href="#">你是什么人便会遇上什么人</a></li>
-            <li><a href="#">帝国cms 列表页调用子栏目，没有则不显示栏目名称</a></li>
-            <li><a href="#">第二届 优秀个人博客模板比赛参选活动</a></li>
-            <li><a href="#">个人博客模板《绅士》后台管理</a></li>
+            <li v-for="ls in lists"><a v-bind:href="ls.content" target="_blank">{{ls.title}}</a></li>
         </ul>
     </div>
     <div class="tuijian">
         <h2>点击排行</h2>
         <ul>
-            <li><a href="#">你是什么人便会遇上什么人</a></li>
-            <li><a href="#">帝国cms 列表页调用子栏目，没有则不显示栏目名称</a></li>
-            <li><a href="#">第二届 优秀个人博客模板比赛参选活动</a></li>
-            <li><a href="#">个人博客模板《绅士》后台管理</a></li>
-            <li><a href="#">你是什么人便会遇上什么人</a></li>
-            <li><a href="#">帝国cms 列表页调用子栏目，没有则不显示栏目名称</a></li>
-            <li><a href="#">第二届 优秀个人博客模板比赛参选活动</a></li>
-            <li><a href="#">个人博客模板《绅士》后台管理</a></li>
+            <li v-for="ls in lists"><a v-bind:href="ls.content" target="_blank">{{ls.title}}</a></li>
         </ul>
     </div>
     <div class="cloud">
         <h2>标签云</h2>
         <ul>
-            <a href="#">陌上花开</a>
-            <a href="#">校园生活</a>
-            <a href="#">html5</a>
-            <a href="#">SumSung</a>
-            <a href="#">青春</a>
-            <a href="#">温暖</a>
-            <a href="#">阳光</a>
-            <a href="#">三星</a>
-            <a href="#">索尼</a>
-            <a href="#">华维荣耀</a>
-            <a href="#">三星</a>
-            <a href="#">索尼</a>
+            <a href="#">SpringBoot</a>
+            <a href="#">Mybatis</a>
+            <a href="#">Redis</a>
+            <a href="#">Websocket</a>
+            <a href="#">Shiro</a>
+            <a href="#">多数据源</a>
+            <a href="#">MongoDB</a>
+            <a href="#">Quartz</a>
+            <a href="#">Dubbo</a>
+            <a href="#">ElasticSearch</a>
+            <a href="#">SpringCloud</a>
+            <a href="#">RabbitMQ</a>
         </ul>
     </div>
     <div class="guanzhu">
@@ -64,3 +56,26 @@
         </ul>
     </div>
 </aside>
+<script>
+    var _vue = new Vue({
+        el: '.l_box ',
+        data: {
+            lists: [],
+        },
+        created: function () {
+            this.getList();
+        },
+        methods: {
+            getList: function () {
+                $.ajax({
+                    url: 'blog/get/all',
+                    dataType: 'json',
+                    type: 'get',
+                    success: function (data) {
+                        _vue.lists = data;
+                    }
+                });
+            }
+        }
+    });
+</script>
