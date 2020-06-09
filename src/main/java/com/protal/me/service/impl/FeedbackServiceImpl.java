@@ -16,7 +16,7 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public boolean insert(Feedback feedback) {
-        return false;
+        return feedbackMapper.insert(feedback);
     }
 
     @Override

@@ -11,7 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("blogs")
@@ -56,6 +58,18 @@ public class BlogsController {
         Page<Object> page = PageHelper.startPage(1, 10);
         List<Blog> result = blogService.list(blog);
         LOG.info("count:{}", page.getTotal());
+        return new ResultBody(StatusEnum.SUCCESS, result);
+    }
+
+    @GetMapping("prevnext")
+    public Object prevnext(@RequestParam Long id) {
+        LOG.info("{}", id);
+        Blog prev = blogService.prev(id);
+        Blog next = blogService.next(id);
+        Map<String, Object> result = new HashMap<>();
+        result.put("prev", prev);
+        result.put("next", next);
+        LOG.info("{}", result);
         return new ResultBody(StatusEnum.SUCCESS, result);
     }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>首页index</title>
+    <title>首页 index</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="css/blog.cmn.css">
     <link rel="stylesheet" href="css/message.css">
@@ -14,9 +14,10 @@
     <div id="blogaside"></div>
     <main class="r_box">
         <li v-for="ls in lists">
-            <i><a v-bind:href="ls.content" target="_blank"><img src="images/1.jpg"></a></i>
-            <h3><a v-bind:href="ls.content" target="_blank"><span v-html="ls.title"></span></a></h3>
-            <p>{{ls.date}} <span v-html="ls.title"></span> {{ls.content}} 《注》想看更多细节，请点击进入，内容可能过长需要花费几分钟阅读。</p>
+            <i><a v-bind:href="'detail.html?type=100&id='+ls.id" target="_blank"><img src="images/1.jpg"></a></i>
+            <h3><a v-bind:href="'detail.html?type=100&id='+ls.id" target="_blank"><span v-html="ls.title"></span></a>
+            </h3>
+            <p>{{ls.date}} <span v-html="ls.title"></span> {{ls.author}} 《注》想看更多细节，请点击进入，内容可能过长需要花费几分钟阅读。</p>
         </li>
         <div id="loadmore">
             <input value="0" hidden>
@@ -29,7 +30,7 @@
 <script type="text/javascript" src="js/hc-sticky.js"></script>
 <script type="text/javascript" src="js/blog.cmn.js"></script>
 <script type="text/javascript" src="js/countUp.min.js"></script>
-<script type="text/javascript" src="js/vue/vue.min.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
 <script type="text/javascript" src="js/message.min.js"></script>
 <script type="text/javascript">
     $("#blogheader").load("public/header.html");

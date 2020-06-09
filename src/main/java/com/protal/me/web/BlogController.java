@@ -31,6 +31,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,18 +77,48 @@ public class BlogController {
         return blogRepository.save(blog);
     }
 
+    //更新blog内容
+    public void update(Blog blog, String url) throws IOException {
+        Document document = Jsoup.connect(url).get();
+        Elements infos = document.getElementsByClass("content-header").first().getElementsByClass("info").first().children();
+        for (int i = 0; i < infos.size(); i++) {
+            if (0 == i) {
+                blog.setLabel(infos.get(i).html());
+            }
+            if (1 == i) {
+                blog.setStar(Long.parseLong(CharMatcher.javaDigit().retainFrom(infos.get(i).html())));
+            }
+            LOG.info("标签 : {}", infos.get(i).html());
+        }
+
+        Elements content = document.getElementById("art_content").children();
+        content.remove(content.first());
+        content.remove(content.last());
+        LOG.info("内容 : {}", content);
+        blog.setContent(content.toString());
+
+        String author = content.last().getElementsByClass("author").html().replace("作者：", "");
+        LOG.info(author);
+        blog.setAuthor(author);
+        blogRepository.save(blog);
+    }
+
     @GetMapping("select")
-    public Object select(@RequestBody Blog blog) {
-        LOG.info(blog.toString());
-        Assert.notNull(blog.getId(), "Cannot select 'null' id.");
-        return blogRepository.findById(blog.getId()).get();
+    public Object select(@RequestParam Long id) {
+        LOG.info("{}", id);
+        Assert.notNull(id, "Cannot select 'null' id.");
+        return blogRepository.findById(id).get();
     }
 
     @GetMapping("get/all")
     public Object getAll(@PageableDefault Pageable pageable) {
         LOG.info("{}", new Gson().toJson(pageable));
         // return blogRepository.search(QueryBuilders.matchAllQuery());
-        return blogRepository.findAll(pageable).getContent();
+        List<Blog> blogs = blogRepository.findAll(pageable).getContent();
+        blogs.forEach(b -> {
+            b.setContent(null);
+        });
+        return blogs;
     }
 
     // 批量导入数据到ES
@@ -160,6 +191,7 @@ public class BlogController {
 
         NativeSearchQuery query = new NativeSearchQueryBuilder().withQuery(QueryBuilders.matchQuery("title", title))
                 .withPageable(pageable).withSort(SortBuilders.fieldSort("id").order(SortOrder.DESC))
+                .withFields("id", "title", "author", "label", "star", "date")
                 .withHighlightFields(highlight).build();
 
         AggregatedPage<Blog> aggregatedPage = elasticsearchTemplate.queryForPage(query, Blog.class,
@@ -182,7 +214,8 @@ public class BlogController {
                         for (SearchHit hit : response.getHits()) {
                             blog = new Blog();
                             blog.setId(Long.parseLong(hit.getSourceAsMap().get("id").toString()));
-                            blog.setContent(hit.getSourceAsMap().get("content").toString());
+                            //blog.setContent(hit.getSourceAsMap().get("content").toString());
+                            blog.setAuthor(hit.getSourceAsMap().get("author").toString());
                             blog.setDate(hit.getSourceAsMap().get("date").toString());
                             HighlightField title = hit.getHighlightFields().get("title");
                             if (null != title) {

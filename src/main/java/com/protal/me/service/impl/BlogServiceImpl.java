@@ -49,4 +49,17 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> list(Blog blog) {
         return blogMapper.list(blog);
     }
+
+    @Override
+    @Cacheable(key = "'vo_prev_'+#id", unless = "#result==null")
+    public Blog prev(long id) {
+        return blogMapper.prev(id);
+    }
+
+    @Override
+    @Cacheable(key = "'vo_next_'+#id", unless = "#result==null")
+    public Blog next(long id) {
+        return blogMapper.next(id);
+    }
+
 }

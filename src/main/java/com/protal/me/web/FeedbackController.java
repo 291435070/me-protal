@@ -1,5 +1,6 @@
 package com.protal.me.web;
 
+import com.protal.me.config.LoginInterceptor;
 import com.protal.me.config.RedisCacheUtil;
 import com.protal.me.model.Feedback;
 import com.protal.me.service.FeedbackService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 
 @RestController
@@ -41,6 +43,15 @@ public class FeedbackController {
         LOG.info(feedback.toString());
 
         return new ResultBody(StatusEnum.SUCCESS, vo);
+    }
+
+    @PostMapping("add")
+    public Object add(@RequestBody Feedback feedback, HttpServletRequest request) {
+        Object user = request.getSession().getAttribute(LoginInterceptor.SESSION_USER);
+        feedback.setEmail(user.toString());
+        LOG.info(feedback.toString());
+        feedbackService.insert(feedback);
+        return new ResultBody(StatusEnum.SUCCESS, null);
     }
 
     @RequestMapping("redis")

@@ -1,5 +1,6 @@
 package com.protal.me;
 
+import com.google.common.base.CharMatcher;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.commons.io.FileUtils;
@@ -19,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -58,6 +60,22 @@ public class ProtalApplicationTests {
             }
             Thread.sleep(500);
         }
+    }
+
+    @Test
+    public void jsoupTest2() throws IOException {
+        Document document = Jsoup.connect("https://www.jqhtml.com/61781.html").get();
+        Elements infos = document.getElementsByClass("content-header").first().getElementsByClass("info").first().children();
+        for (Element ele : infos) {
+            LOG.info("标签 : {}", ele.html().contains("浏览数") ? CharMatcher.javaDigit().retainFrom(ele.html()) : ele.html());
+        }
+        Elements content = document.getElementById("art_content").children();
+        content.remove(content.first());
+        content.remove(content.last());
+        LOG.info("内容 : {}", content);
+
+        String author = content.last().getElementsByClass("author").html();
+        LOG.info(author.replace("作者：", ""));
     }
 
     @Test
