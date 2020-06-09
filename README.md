@@ -22,12 +22,13 @@
     * ......
     
 * 前端技术：
-    * jquery.js
-    * countUp.js
-    * hc-sticky.js
-    * vue.min.js
+    * jquery
+    * countUp
+    * hc-sticky
+    * vue
     * ......
     
+* 部署：解压protal.zip，导入mysql，安装ES（详细安装步骤见BlogController类中注释部分）；导入IDEA，启动即可。  
+    
 感谢!
-
 [杨青青个人博客模板](https://www.yangqq.com)
