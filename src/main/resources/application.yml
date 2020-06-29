@@ -32,8 +32,8 @@ spring:
         enabled: true
   mail:
     host: smtp.qq.com
-    username: haoitteam@qq.com
-    password: fygpwzcqcpxtbieh
+    username: xxx@qq.com
+    password: xxxxxx
     default-encoding: UTF-8
     properties.mail.smtp.auth: true
     properties.mail.smtp.auth.starttls.enable: true
