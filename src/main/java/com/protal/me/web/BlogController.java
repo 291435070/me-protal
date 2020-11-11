@@ -20,8 +20,9 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.SearchResultMapper;
 import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
 import org.springframework.data.elasticsearch.core.aggregation.impl.AggregatedPageImpl;
@@ -52,9 +53,11 @@ public class BlogController {
 
     @Autowired
     private BlogRepository blogRepository;
-
+    //单机版不带账户密码方式
+//    @Autowired
+//    private ElasticsearchTemplate elasticsearchTemplate;
     @Autowired
-    private ElasticsearchTemplate elasticsearchTemplate;
+    private ElasticsearchRestTemplate elasticsearchTemplate;
 
     @PostMapping("insert")
     public Object insert(@RequestBody Blog blog) {
@@ -118,6 +121,17 @@ public class BlogController {
         blogs.forEach(b -> {
             b.setContent(null);
         });
+        return blogs;
+    }
+
+    @GetMapping("get/list")
+    public Object getList(@RequestParam String label, @PageableDefault Pageable pageable) {
+        pageable = PageRequest.of(0, pageable.getPageSize());
+        LOG.info("{}->{}", label, new Gson().toJson(pageable));
+        NativeSearchQuery query = new NativeSearchQueryBuilder()
+                .withQuery(QueryBuilders.termQuery("label.keyword", label)).withPageable(pageable)
+                .withSort(SortBuilders.fieldSort("id").order(SortOrder.DESC)).build();
+        List<Blog> blogs = blogRepository.search(query.getQuery(), pageable).getContent();
         return blogs;
     }
 

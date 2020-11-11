@@ -28,7 +28,7 @@ public class InitResource implements CommandLineRunner {
         long count = blogRepository.count();
         if (0 == count) {
             List<Blog> blogs = blogService.list(null);
-            blogs.forEach(blog -> blogRepository.save(blog));
+//            blogs.forEach(blog -> blogRepository.save(blog));
         }
     }
 }
